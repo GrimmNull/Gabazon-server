@@ -5,6 +5,8 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Locale;
+
 import com.mysql.cj.jdbc.Driver;
 
 public class DBConnection {
@@ -23,16 +25,23 @@ public class DBConnection {
             dbConn=new DBConnection();
         return dbConn;
     }
-    public ResultSet queryTheDatabase(String stm){
-        try {
+    public ResultSet queryTheDatabase(String stm) throws SQLException {
             if (con == null || con.isClosed())
                 con = DriverManager.getConnection("jdbc:mysql://localhost/minecraftitem","gabazon","server");
             stmt=con.createStatement();
+            if(stm.toLowerCase(Locale.ROOT).contains("update"))
+            {
+                stmt.executeUpdate(stm);
+                return null;
+            }
+            else
             result=stmt.executeQuery(stm);
-        }catch(SQLException e){System.out.println(e); }
         return result;
     }
 
+    public void closeConn() throws SQLException {
+        con.close();
+    }
 
 //    private static String functionToMap(String temp){
 //        if(temp.charAt(0)==' ')

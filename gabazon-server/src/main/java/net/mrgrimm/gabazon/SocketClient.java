@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.sql.SQLException;
 
 class SocketClient extends Thread {
     private Socket socket = null;
@@ -28,10 +29,10 @@ class SocketClient extends Thread {
             request = in.readLine();
             buget=Integer.parseInt(in.readLine());
             System.out.println("Request:" + request);
-            String[] args = request.split(" ");
+            String[] args = request.replaceAll("\"","").split(" ");
             switch (args[0]) {
-                case "buy": {
-                    raspuns = new Buy().execute(request.replace("buy","").split(" "),buget);
+                case "buy:": {
+                    raspuns = new Buy().execute(request.replace("buy: ","").split(" "),buget);
                     break;
                 }
                 case "list": {
@@ -39,14 +40,14 @@ class SocketClient extends Thread {
                     break;
                 }
                 default: {
-                    raspuns = "I don't know this command";
+                    raspuns = "Error: Format not met";
                 }
             }
             out.println(raspuns);
             out.flush();
 
 
-        } catch (IOException e) {
+        } catch (IOException | SQLException e) {
             System.err.println("Communication error... " + e);
         } finally {
             try {

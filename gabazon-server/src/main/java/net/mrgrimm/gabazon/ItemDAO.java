@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ItemDAO {
-    public static List<Item> findAll(DBConnection myDB){
+    public static List<Item> findAll(DBConnection myDB) throws SQLException {
         List<Item> res=new LinkedList<>();
         ResultSet set=myDB.queryTheDatabase("SELECT * FROM items");
         try {
@@ -15,7 +15,7 @@ public class ItemDAO {
         }catch(SQLException e){System.err.println(e);}
         return res;
     }
-    public static Item findByName(DBConnection myDB, String name){
+    public static Item findByName(DBConnection myDB, String name) throws SQLException {
         StringBuilder temp=new StringBuilder();
         temp.append("SELECT * FROM items WHERE name='");
         temp.append(name);
@@ -26,19 +26,23 @@ public class ItemDAO {
                 return null;
             else{
                 set.next();
-                return new Item(set.getInt(1),set.getString(2),set.getInt(3),set.getInt(4));
+                Item toReturn=new Item(set.getInt(1),set.getString(2),set.getInt(3),set.getInt(4));
+                myDB.closeConn();
+                return toReturn;
             }
         }catch(SQLException e){System.err.println(e);}
         return null;
     }
 
-    public static void updateItem(DBConnection myDB, Item item){
+    public static void updateItem(DBConnection myDB, Item item) throws SQLException {
         StringBuilder temp=new StringBuilder();
-        temp.append("UPDATE items");
-        temp.append("SET quantity='");
+        temp.append("UPDATE items ");
+        temp.append("SET quantity=");
         temp.append(item.getQuantity());
-        temp.append("' WHERE id=");
+        temp.append(" WHERE id=");
         temp.append(item.getId());
+        System.out.println(temp);
         myDB.queryTheDatabase(temp.toString());
+        myDB.closeConn();
     }
 }

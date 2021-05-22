@@ -28,6 +28,7 @@ class SocketClient extends Thread {
             Boolean running = true;
             request = null;
             request = in.readLine();
+            System.out.println("Request:" + request);
             String[] args = request.split(" ");
             switch (args[0]) {
                 case "buy": {

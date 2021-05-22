@@ -40,7 +40,7 @@ class SocketClient extends Thread {
                     break;
                 }
                 case "list": {
-                    raspuns = new ListItems().execute(args);
+                    raspuns = new ListItems().execute();
                     break;
                 }
                 default: {

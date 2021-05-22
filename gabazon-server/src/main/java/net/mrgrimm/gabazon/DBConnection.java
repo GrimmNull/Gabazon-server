@@ -4,6 +4,7 @@ import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import com.mysql.jdbc.Driver;
 
 public class DBConnection {
     private Statement stmt;
@@ -12,7 +13,7 @@ public class DBConnection {
     private static DBConnection dbConn=null;
     private DBConnection(){
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            //Class.forName("com.mysql.cj.jdbc.Driver");
         }catch(Exception e){ System.out.println(e);}
     }
     public static DBConnection getConnection(){

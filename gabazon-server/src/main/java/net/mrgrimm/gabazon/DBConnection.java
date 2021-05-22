@@ -26,7 +26,7 @@ public class DBConnection {
     public ResultSet queryTheDatabase(String stm){
         try {
             if (con == null || con.isClosed())
-                con = DriverManager.getConnection("jdbc:mysql://localhost/minecraftitem" + "user=gabazon&password=server");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/minecraftitem","gabazon","server");
             stmt=con.createStatement();
             result=stmt.executeQuery(stm);
         }catch(SQLException e){System.out.println(e); }

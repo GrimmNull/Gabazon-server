@@ -2,15 +2,12 @@ package net.mrgrimm.gabazon;
 
 import net.mrgrimm.gabazon.commands.Buy;
 import net.mrgrimm.gabazon.commands.ListItems;
-import net.mrgrimm.gabazon.commands.Sell;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 
 class SocketClient extends Thread {
     private Socket socket = null;
@@ -35,10 +32,6 @@ class SocketClient extends Thread {
             switch (args[0]) {
                 case "buy": {
                     raspuns = new Buy().execute(request.replace("buy","").split(" "),buget);
-                    break;
-                }
-                case "sell": {
-                    raspuns = new Sell().execute(request.replace("buy","").split(" "),buget);
                     break;
                 }
                 case "list": {

@@ -9,7 +9,6 @@ public class DBConnection {
     private Statement stmt;
     private ResultSet result;
     private Connection con;
-    private String lastTable;
     private static DBConnection dbConn=null;
     private DBConnection(){
         try{
@@ -24,7 +23,7 @@ public class DBConnection {
     public ResultSet queryTheDatabase(String stm){
         try {
             if (con == null || con.isClosed())
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/minecraftitems", "gabazon", "server");
+                con = DriverManager.getConnection("jdbc:mysql://localhost/minecraftitem" + "user=gabazon&password=server");
             stmt=con.createStatement();
             result=stmt.executeQuery(stm);
         }catch(SQLException e){System.out.println(e); }

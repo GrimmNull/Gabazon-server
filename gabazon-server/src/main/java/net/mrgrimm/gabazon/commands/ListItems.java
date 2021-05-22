@@ -7,8 +7,11 @@ import net.mrgrimm.gabazon.ItemDAO;
 import java.util.List;
 
 public class ListItems {
-    public String execute(String[] args){
+    public String execute(){
         List<Item> items= ItemDAO.findAll(App.myDB);
+        for(Item temp : items){
+            System.out.println(temp);
+        }
         return "yes";
     }
 }

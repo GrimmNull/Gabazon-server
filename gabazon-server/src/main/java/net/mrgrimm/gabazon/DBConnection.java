@@ -1,9 +1,9 @@
 package net.mrgrimm.gabazon;
 
-import java.io.*;
 import java.sql.*;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class DBConnection {
     private Statement stmt;

@@ -42,4 +42,14 @@ public class Item {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", id=" + id +
+                '}';
+    }
 }

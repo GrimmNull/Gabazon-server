@@ -1,10 +1,12 @@
 package net.mrgrimm.gabazon;
 
 
-public class App 
+import java.io.IOException;
+
+public class App
 {
-    public static void main( String[] args )
-    {
+    public static DBConnection myDB=DBConnection.getConnection();
+    public static void main( String[] args ) throws IOException {
         SocketServer server = new SocketServer();
     }
 }

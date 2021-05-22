@@ -1,5 +1,9 @@
 package net.mrgrimm.gabazon;
 
+import net.mrgrimm.gabazon.commands.Buy;
+import net.mrgrimm.gabazon.commands.ListItems;
+import net.mrgrimm.gabazon.commands.Sell;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,23 +31,24 @@ class SocketClient extends Thread {
             String[] args = request.split(" ");
             switch (args[0]) {
                 case "buy": {
-                    args[0] = Integer.toString(socket.getPort());
-                    raspuns = new Login().execute(args);
+                    raspuns = new Buy().execute(args);
                     break;
                 }
                 case "sell": {
-                    args[0] = Integer.toString(socket.getPort());
-                    raspuns = new Register().execute(args);
+                    raspuns = new Sell().execute(args);
                     break;
                 }
-
+                case "list": {
+                    raspuns = new ListItems().execute(args);
+                    break;
+                }
                 default: {
                     raspuns = "I don't know this command";
                 }
             }
             out.println(raspuns);
             out.flush();
-            SocketServer.printUsers();
+
 
         } catch (IOException e) {
             System.err.println("Communication error... " + e);

@@ -1,14 +1,10 @@
 package net.mrgrimm.gabazon;
 
-import java.io.File;
-import java.net.URL;
-import java.net.URLClassLoader;
+
 import java.sql.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
 import com.mysql.cj.jdbc.Driver;
 
 public class DBConnection {
@@ -18,17 +14,7 @@ public class DBConnection {
     private static DBConnection dbConn=null;
     private DBConnection(){
         try{
-//            List<File> jars = Arrays.asList(new File("jars/").listFiles());
-//            URL[] urls = new URL[jars.size()];
-//            for (int i = 0; i < jars.size(); i++) {
-//                try {
-//                    urls[i] = jars.get(i).toURI().toURL();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//            URLClassLoader childClassLoader = new URLClassLoader(urls, ClassLoader.getSystemClassLoader());
-//            Class.forName("com.mysql.cj.jdbc.Driver", true , childClassLoader);
+
             Class.forName("com.mysql.cj.jdbc.Driver");
         }catch(Exception e){ System.out.println(e);}
     }

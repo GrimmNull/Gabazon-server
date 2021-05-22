@@ -23,20 +23,22 @@ class SocketClient extends Thread {
         try {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             String request;
+            Integer buget;
             PrintWriter out = new PrintWriter(socket.getOutputStream());
             String raspuns = "";
             Boolean running = true;
             request = null;
             request = in.readLine();
+            buget=Integer.parseInt(in.readLine());
             System.out.println("Request:" + request);
             String[] args = request.split(" ");
             switch (args[0]) {
                 case "buy": {
-                    raspuns = new Buy().execute(args);
+                    raspuns = new Buy().execute(request.replace("buy","").split(" "),buget);
                     break;
                 }
                 case "sell": {
-                    raspuns = new Sell().execute(args);
+                    raspuns = new Sell().execute(request.replace("buy","").split(" "),buget);
                     break;
                 }
                 case "list": {

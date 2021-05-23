@@ -28,7 +28,6 @@ class SocketClient extends Thread {
             request = null;
             request = in.readLine();
             buget=Integer.parseInt(in.readLine());
-            System.out.println("Request:" + request);
             String[] args = request.replaceAll("\"","").split(" ");
             switch (args[0]) {
                 case "buy:": {

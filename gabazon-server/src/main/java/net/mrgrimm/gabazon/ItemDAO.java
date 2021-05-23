@@ -41,7 +41,6 @@ public class ItemDAO {
         temp.append(item.getQuantity());
         temp.append(" WHERE id=");
         temp.append(item.getId());
-        System.out.println(temp);
         myDB.queryTheDatabase(temp.toString());
         myDB.closeConn();
     }

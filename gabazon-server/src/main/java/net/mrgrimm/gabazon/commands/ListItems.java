@@ -12,7 +12,6 @@ public class ListItems {
         StringBuilder result=new StringBuilder();
         List<Item> items= ItemDAO.findAll(App.myDB);
         for(Item temp : items){
-            System.out.println(temp);
             result.append(temp.getName())
                     .append(":")
                     .append(temp.getQuantity())

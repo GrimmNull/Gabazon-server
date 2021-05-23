@@ -2,15 +2,8 @@ package net.mrgrimm.gabazon;
 
 
 import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 
 public class SocketServer {
